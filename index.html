@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长大留守儿童</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>长大留守儿童</h1>
+            <p class="tagline">分享生活，记录成长</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#profile">我的主页</a></li>
+                    <li><a href="#login" id="loginToggle" class="auth-menu">登录</a></li>
+                    <li><a href="#register" id="registerToggle" class="auth-menu">注册</a></li>
+                    <li><a href="#logout" id="logoutToggle" class="auth-menu" style="display: none;">注销</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 登录表单 -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeLoginModal">&times;</span>
+                <h2>登录</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn">登录</button>
+                    <p class="switch-form">没有账户？<a href="#" id="switchToRegister">注册</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- 注册表单 -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeRegisterModal">&times;</span>
+                <h2>注册</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">邮箱</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">确认密码</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn">注册</button>
+                    <p class="switch-form">已有账户？<a href="#" id="switchToLogin">登录</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- 首页部分 -->
+        <section id="home" class="container section">
+            <div class="content-wrapper">
+                <div class="left-sidebar">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索用户或动态">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="trending">
+                        <h3>热门话题</h3>
+                        <ul>
+                            <li><a href="#">#成长故事</a></li>
+                            <li><a href="#">#留守儿童</a></li>
+                            <li><a href="#">#教育支持</a></li>
+                            <li><a href="#">#心理辅导</a></li>
+                            <li><a href="#">#公益活动</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="post-form">
+                        <textarea id="postContent" placeholder="分享你的想法..."></textarea>
+                        <div class="post-actions">
+                            <button id="postButton" class="btn">发布</button>
+                        </div>
+                    </div>
+                    <div id="postsContainer" class="posts-container">
+                        <!-- 动态内容将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="user-profile">
+                        <div class="profile-image">
+                            <img src="profile.jpg" alt="个人照片">
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="usernameDisplay">未登录</h3>
+                            <p id="userBio">欢迎来到长大留守儿童</p>
+                        </div>
+                    </div>
+                    <div class="suggestions">
+                        <h3>推荐用户</h3>
+                        <ul id="suggestedUsers">
+                            <!-- 推荐用户将通过JavaScript动态加载 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我的主页部分 -->
+        <section id="profile" class="container section" style="display: none;">
+            <div class="profile-header">
+                <div class="profile-cover">
+                    <img src="cover.jpg" alt="封面照片">
+                </div>
+                <div class="profile-details">
+                    <div class="profile-image">
+                        <img src="profile.jpg" alt="个人照片">
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileUsername">未登录</h2>
+                        <p id="profileBio">欢迎来到我的主页</p>
+                        <button id="editProfileBtn" class="btn">编辑资料</button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-content">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="myPosts">我的动态</button>
+                    <button class="tab-btn" data-tab="myLikes">我的点赞</button>
+                </div>
+                <div id="myPosts" class="profile-tab-content active">
+                    <div id="userPostsContainer" class="posts-container">
+                        <!-- 用户动态内容将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+                <div id="myLikes" class="profile-tab-content">
+                    <div id="likedPostsContainer" class="posts-container">
+                        <!-- 点赞动态内容将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 长大留守儿童</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
